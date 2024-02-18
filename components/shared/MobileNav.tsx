@@ -1,18 +1,15 @@
 "use client";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import Image from "next/image";
 import { SignedIn, UserButton } from "@clerk/nextjs";
+import { navLinks } from "@/constants";
+import { usePathname } from "next/navigation";
 
 const MobileNav = () => {
+  const pathname = usePathname();
+
   return (
     <header className="header">
       <Link href="/" className="flex items-center gap-2 md:py-2">
@@ -45,6 +42,36 @@ const MobileNav = () => {
                   width={152}
                   height={23}
                 />
+                <ul className="header-nav_elements">
+                  {/* complete navlinks for mobileNav */}
+                  {navLinks.map((link) => {
+                    const isActive = link.route === pathname;
+
+                    return (
+                      <li
+                        className={`${
+                          isActive && "gradient-text"
+                        } p-18 flex whitespace-nowrap text-dark-700`}
+                        key={link.route}
+                      >
+                        <Link
+                          className="sidebar-link"
+                          cursor-pointer
+                          href={link.route}
+                        >
+                          <Image
+                            src={link.icon}
+                            alt="logo"
+                            width={24}
+                            height={24}
+                            className={`${isActive && "brightness-150"}`}
+                          />
+                          {link.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
               </>
             </SheetContent>
           </Sheet>
