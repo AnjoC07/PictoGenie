@@ -1,5 +1,27 @@
 import { Schema, models, model } from "mongoose";
 
+//** Image Interface */
+export interface IImage extends Document {
+  title: string;
+  transformationType: string;
+  publicId: string;
+  secureUrl: string;
+  width?: number;
+  height?: number;
+  config?: object;
+  transformationUrl?: string;
+  aspectRatio?: string;
+  color?: string;
+  prompt?: string;
+  author: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+  };
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 //** Image Schema */
 const ImageSchema = new Schema({
   title: { type: String, required: true },
