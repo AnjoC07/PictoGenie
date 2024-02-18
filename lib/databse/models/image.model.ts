@@ -1,5 +1,6 @@
-import { Schema } from "mongoose";
+import { Schema, models, model } from "mongoose";
 
+//** Image Schema */
 const ImageSchema = new Schema({
   title: { type: String, required: true },
   transformationType: { type: String, required: true },
@@ -16,3 +17,7 @@ const ImageSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
+
+const Image = models?.Image || model("Image", ImageSchema);
+
+export default Image;
