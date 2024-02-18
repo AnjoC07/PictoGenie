@@ -6,8 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 // Import the usePathname hook from next/navigation
 import { usePathname } from "next/navigation";
-
-// Rest of your imports
+import { Button } from "../ui/button";
 
 const Sidebar = () => {
   // Use usePathname inside a Client Component
@@ -24,10 +23,12 @@ const Sidebar = () => {
             height={28}
           />
         </Link>
+
         <nav className="sidebar-nav">
           <SignedIn>
             <ul className="sidebar-nav_elements">
-              {navLinks.map((link) => {
+              {/* Dividing the sidebar into two sections (functionalities and admin side) */}
+              {navLinks.slice(0, 6).map((link) => {
                 const isActive = link.route === pathname;
 
                 return (
@@ -53,9 +54,46 @@ const Sidebar = () => {
                 );
               })}
             </ul>
+
+            {/* Admin side Action links/buttons */}
+            <ul>
+              {/* Profile and Buy Credits */}
+              {navLinks.slice(6).map((link) => {
+                const isActive = link.route === pathname;
+
+                return (
+                  <li
+                    key={link.route}
+                    className={`sidebar-nav_element ${
+                      isActive
+                        ? "bg-purple-gradient text-white"
+                        : "text-gray-700"
+                    }`}
+                  >
+                    <Link className="sidebar-link" href={link.route}>
+                      <Image
+                        src={link.icon}
+                        alt="logo"
+                        width={24}
+                        height={24}
+                        className={`${isActive && "brightness-200"}`}
+                      />
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
+              <li className="flex-center cursor-pointer gap-2 p-4">
+                <UserButton afterSignOutUrl="/" showName />
+              </li>
+            </ul>
           </SignedIn>
 
-          <SignedOut></SignedOut>
+          <SignedOut>
+            <Button asChild className="button bg-purple-gradient bg-cover">
+              <Link href="/sign-in"></Link>
+            </Button>
+          </SignedOut>
         </nav>
       </div>
     </aside>
