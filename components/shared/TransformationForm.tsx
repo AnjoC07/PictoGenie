@@ -25,7 +25,10 @@ const formSchema = z.object({
   publicId: z.string(),
 });
 
-const TransformationForm = () => {
+const TransformationForm = ({
+  action,
+  data = null,
+}: TransformationFormProps) => {
   const initialValues =
     data && action === "Update"
       ? {
