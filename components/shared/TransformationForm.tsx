@@ -87,6 +87,10 @@ const TransformationForm = ({
 
         {type === "fill" && (
           <CustomField
+            control={form.control}
+            name="aspectRatio"
+            formLabel="Aspect Ratio"
+            className="w-full"
             render={({ field }) => (
               <Select>
                 <SelectTrigger className="w-[180px]">
