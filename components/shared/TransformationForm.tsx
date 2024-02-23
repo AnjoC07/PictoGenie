@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { defaultValues } from "@/constants";
+import { CustomField } from "./CustomField";
 
 export const formSchema = z.object({
   title: z.string(),
@@ -53,7 +54,15 @@ const TransformationForm = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8"></form>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <CustomField
+          control={form.control}
+          name="title"
+          formLabel="Image Title"
+          className="w-full"
+          render={({ field }) => <Input {...field} className="input-field" />}
+        />
+      </form>
     </Form>
   );
 };
