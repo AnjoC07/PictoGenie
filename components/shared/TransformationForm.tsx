@@ -69,6 +69,10 @@ const TransformationForm = ({
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
+  const onSelectFieldHandler = (
+    value: string,
+    onChangeField: (value: string) => void
+  ) => {};
 
   return (
     <Form {...form}>
