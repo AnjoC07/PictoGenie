@@ -31,7 +31,7 @@ import {
 } from "@/constants";
 import { CustomField } from "./CustomField";
 import { useState } from "react";
-import { AspectRatioKey } from "@/lib/utils";
+import { AspectRatioKey, debounce } from "@/lib/utils";
 
 export const formSchema = z.object({
   title: z.string(),
@@ -97,12 +97,25 @@ const TransformationForm = ({
     return onChangeField(value);
   };
 
+  // Object Remove
   const onInputChangeHandler = (
     fieldName: string,
     value: string,
     type: string,
     onChangeField: (value: string) => void
-  ) => {};
+  ) => {
+    debounce(() => {
+      setnewTransformation((prevState: any) => ({
+        ...prevState,
+        [type]: {
+          ...prevState?.[type],
+          [fieldName === "prompt" ? "prompt" : "to"]: value,
+        },
+      }));
+
+      return onChangeField(value);
+    }, 1000);
+  };
 
   const onTransformHandler = () => {};
 
