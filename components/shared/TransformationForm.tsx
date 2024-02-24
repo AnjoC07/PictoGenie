@@ -116,6 +116,19 @@ const TransformationForm = ({
             )}
           />
         )}
+
+        {type === "remove" ||
+          (type === "recolor" && (
+            <div className="prompt-field">
+              <CustomField
+                control={form.control}
+                name="prompt"
+                formLabel={
+                  type === "remove" ? "Object to remove" : "Object to recolor"
+                }
+              />
+            </div>
+          ))}
       </form>
     </Form>
   );
