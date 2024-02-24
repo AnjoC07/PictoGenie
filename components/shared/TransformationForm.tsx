@@ -78,10 +78,24 @@ const TransformationForm = ({
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
+
+  // Aspect Ratio - Generative Fill
   const onSelectFieldHandler = (
     value: string,
     onChangeField: (value: string) => void
-  ) => {};
+  ) => {
+    const imageSize = aspectRatioOptions[value as AspectRatioKey];
+
+    setImage((prevState: any) => ({
+      ...prevState,
+      aspectRatio: imageSize.aspectRatio,
+      width: imageSize.width,
+      height: imageSize.height,
+    }));
+
+    setnewTransformation(transformationType.config);
+    return onChangeField(value);
+  };
 
   const onInputChangeHandler = (
     fieldName: string,
