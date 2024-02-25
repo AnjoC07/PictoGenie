@@ -29,6 +29,8 @@ const MediaUploader = ({
       secureUrl: result?.info?.secure_url,
     }));
 
+    onValueChange(result?.info?.public_id);
+
     toast({
       title: "Image uploaded successfully",
       description: "1 credit was deducted from your account",
