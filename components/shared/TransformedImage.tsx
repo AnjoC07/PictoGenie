@@ -50,6 +50,7 @@ const TransformedImage = ({
                 setIsTransforming && setIsTransforming(false);
               }, 8000);
             }}
+            {...transformationConfig}
           />
         </div>
       ) : (
