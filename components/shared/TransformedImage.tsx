@@ -42,7 +42,9 @@ const TransformedImage = ({
             sizes={"(max-width: 768px) 100vw, (max-width: 1200px) 50vw"}
             placeholder={dataUrl as PlaceholderValue}
             className="transformed-image"
-            onLoad={() => {}}
+            onLoad={() => {
+              setIsTransforming && setIsTransforming(false);
+            }}
             onError={() => {}}
           />
         </div>
