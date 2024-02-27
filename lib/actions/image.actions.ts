@@ -7,6 +7,14 @@ import User from "../database/models/user.model";
 import Image from "../database/models/image.model";
 import { redirect } from "next/navigation";
 
+// PopulateUser
+const populateUser = async (query: any) =>
+  query.populate({
+    path: "author",
+    model: "User",
+    select: "_id firstName lastName",
+  });
+
 // ADD IMAGE TO DATABASE
 export async function addImage({ image, userId, path }: AddImageParams) {
   try {
