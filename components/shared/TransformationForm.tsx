@@ -114,6 +114,11 @@ const TransformationForm = ({
             userId,
             path: "/",
           });
+
+          if (newImage) {
+            form.reset();
+            setImage(data);
+          }
         } catch (error) {
           console.log(error);
         }
