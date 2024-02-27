@@ -42,3 +42,16 @@ export async function deleteImage(imageId: string) {
     handleError(error);
   }
 }
+
+// GET IMAGE BY ID
+export async function getImageById(imageId: string) {
+  try {
+    await connectToDatabase();
+
+    revalidatePath(path);
+
+    return JSON.parse(JSON.stringify(imageId));
+  } catch (error) {
+    handleError(error);
+  }
+}
