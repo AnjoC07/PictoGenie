@@ -91,6 +91,20 @@ const TransformationForm = ({
         src: image?.publicId,
         ...transformationConfig,
       });
+
+      const imageData = {
+        title: values.title,
+        publicId: image?.publicId,
+        transformationType: type,
+        width: image?.width,
+        height: image?.height,
+        config: transformationConfig,
+        secureUrl: image?.secureURL,
+        transformationUrl,
+        aspectRatio: values.aspectRatio,
+        prompt: values.prompt,
+        color: values.color,
+      };
     }
   }
 
