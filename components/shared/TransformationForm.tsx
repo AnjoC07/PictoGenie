@@ -37,7 +37,7 @@ import MediaUploader from "./MediaUploader";
 import TransformedImage from "./TransformedImage";
 import { updateCredits } from "@/lib/actions/user.actions";
 import { getCldImageUrl } from "next-cloudinary";
-import { addImage } from "@/lib/actions/image.actions";
+import { addImage, updateImage } from "@/lib/actions/image.actions";
 import { useRouter } from "next/navigation";
 
 export const formSchema = z.object({
@@ -121,6 +121,25 @@ const TransformationForm = ({
             form.reset();
             setImage(data);
             router.push(`/transformations/${newImage._id}`);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      if (action === "Update") {
+        try {
+          const updatedImage = await updateImage({
+            image: {
+              ...imageData,
+              _id: data._id,
+            },
+            userId,
+            path: `/transformations/${data._id}`,
+          });
+
+          if (updatedImage) {
+            router.push(`/transformations/${updatedImage._id}`);
           }
         } catch (error) {
           console.log(error);
