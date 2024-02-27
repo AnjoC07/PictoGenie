@@ -81,7 +81,9 @@ export async function getImageById(imageId: string) {
 
     const image = await populateUser(Image.findById(imageId));
 
-    revalidatePath(path);
+    if (!image) {
+      throw new Error("Image not found");
+    }
 
     return JSON.parse(JSON.stringify(imageId));
   } catch (error) {
