@@ -16,3 +16,16 @@ export async function addImage({ image, userId, path }: AddImageParams) {
     handleError(error);
   }
 }
+
+// UPADATE IMAGE
+export async function updateImage({ image, userId, path }: UpdateImageParams) {
+  try {
+    await connectToDatabase();
+
+    revalidatePath(path);
+
+    return JSON.parse(JSON.stringify(image));
+  } catch (error) {
+    handleError(error);
+  }
+}
