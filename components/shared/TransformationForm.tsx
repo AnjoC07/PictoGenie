@@ -204,6 +204,7 @@ const TransformationForm = ({
     });
   };
 
+  // useEffect for restore and removeBackground
   useEffect(() => {
     if (image && (type === "restore" || type === "removeBackground")) {
       setNewTransformation(transformationType.config);
