@@ -29,3 +29,16 @@ export async function updateImage({ image, userId, path }: UpdateImageParams) {
     handleError(error);
   }
 }
+
+// DELETE IMAGE
+export async function deleteImage(imageId: string) {
+  try {
+    await connectToDatabase();
+
+    revalidatePath(path);
+
+    return JSON.parse(JSON.stringify(imageId));
+  } catch (error) {
+    handleError(error);
+  }
+}
