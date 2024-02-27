@@ -71,6 +71,8 @@ export async function getImageById(imageId: string) {
   try {
     await connectToDatabase();
 
+    const image = await populateUser(Image.findById(imageId));
+
     revalidatePath(path);
 
     return JSON.parse(JSON.stringify(imageId));
