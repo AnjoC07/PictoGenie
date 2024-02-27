@@ -146,6 +146,8 @@ const TransformationForm = ({
         }
       }
     }
+
+    setisSubmitting(false);
   }
 
   // Aspect Ratio - Generative Fill
