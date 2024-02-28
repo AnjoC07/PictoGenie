@@ -1,11 +1,12 @@
-import { UserButton } from "@clerk/nextjs";
-import React from "react";
-
 const Home = () => {
   return (
-    <div>
-      <p>Home</p>
-    </div>
+    <>
+      <section className="home">
+        <h1 className="home-heading">
+          Unleash Your Creative Vision with PictoGenie
+        </h1>
+      </section>
+    </>
   );
 };
 
