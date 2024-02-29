@@ -89,4 +89,23 @@ export async function getImageById(imageId: string) {
   } catch (error) {
     handleError(error);
   }
+
+  // GET ALL IMAGES
+  export async function getAllImages({
+    limit = 9,
+    page = 1,
+    searchQuery = "",
+  }: {
+    limit?: number;
+    page: number;
+    searchQuery?: string;
+  }) {
+    try {
+      await connectToDatabase();
+
+      // Pagination
+    } catch (error) {
+      handleError(error);
+    }
+  }
 }
