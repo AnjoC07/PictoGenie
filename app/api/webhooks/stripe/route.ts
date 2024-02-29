@@ -24,6 +24,7 @@ export async function POST(request: Request) {
   if (eventType === "checkout.session.completed") {
     const { id, amount_total, metadata } = event.data.object;
 
+    // Transaction Object
     const transaction = {
       stripeId: id,
       amount: amount_total ? amount_total / 100 : 0,
